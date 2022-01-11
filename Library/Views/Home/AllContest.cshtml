@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Library.Models.KhModel.Datum>
+
+@foreach (var contest in Model)
+{
+    <li class="nav-item">
+        <a class="btn btn-outline-primary">@contest.title_ar</a>
+    </li>
+}

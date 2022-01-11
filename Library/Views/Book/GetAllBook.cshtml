@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<BookModel>
+
+
+
+@{
+    ViewData["Title"] = "All Books";
+}
+
+
+
+<div class="container">
+    <h2 class="display-4">All Books</h2>
+    <div class="row">
+        @foreach (var books in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225 " xmlns="https://getuikit.com/v2/docs/images/placeholder_600x400.svg"></svg>
+                    <div class="card-body">
+                        <h3 class="card-title">@books.Tilte</h3>
+                        <p class="card-text">
+                          @books.Description
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a asp-controller="book" asp-action="getbook" asp-route-Id="@books.Id"  class="btn btn-sm btn-outline-secondary">View Details</a>
+                            </div>
+                            <small class="text-muted">@books.Author</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
