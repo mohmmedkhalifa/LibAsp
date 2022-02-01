@@ -6,6 +6,7 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using Library.Database;
+using Library.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,9 +31,12 @@ namespace Library
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<BookStoreContext>(op=> op.UseSqlServer("Server=.;Database=BookStore;Integrated Security=true;"));
             services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All));
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddScoped<BookRepository, BookRepository>();
+            services.AddScoped<LanguageRepository, LanguageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
